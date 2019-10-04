@@ -1,0 +1,29 @@
+.header {
+    display: flex;
+}
+
+.headerText {
+    width: 50%;
+    margin-left: 150px;
+    margin-top: 100px;
+}
+
+.headerImage {
+    width: 100%;
+    padding: 25px;
+    margin-top: 25px;
+}
+
+.headerImage img {
+    width: 100%;
+    height: auto;
+}
+
+.categoriesBtn {
+    margin-top: 50px;
+    
+}
+
+.food {
+    margin-top: 100px;
+}

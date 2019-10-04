@@ -1,0 +1,9 @@
+.recepieItem {
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-top: 15px;
+}
+.recepieItem img {
+    width: 100%;
+    height: auto;
+}

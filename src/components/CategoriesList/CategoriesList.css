@@ -1,0 +1,10 @@
+.categoryItem {
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-top: 15px;
+}
+
+.categoryItem img {
+    width: 100%;
+    height: auto;
+}
