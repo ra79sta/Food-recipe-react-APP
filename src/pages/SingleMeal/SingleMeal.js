@@ -6,13 +6,15 @@ class SingleMeal extends Component {
     activeRecipe: [],
     ingrediants: [],
     mesure: [],
-    simulateIdRecipe: [],
-    similarRecipe: []
+    similarIdRecipe: [],
+    similarRecipe: [],
+    categoryRecipes: []
   };
 
   componentDidMount = () => {
     const mealId = this.props.location.state.mealId;
-    
+    const category = this.props.location.state.category;
+    // console.log(category);
     axios
       .get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
       .then(response => {
@@ -36,21 +38,30 @@ class SingleMeal extends Component {
         }, {});
         this.setState({ mesure: resultMes });
 
-        this.randomRecepies();
-
-        this.state.similarIdRecipe.map(simId => {
-          return axios
-            .get(
-              `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${simId}`
-            )
-            .then(response => {
+        axios
+          .get(
+            `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`
+          )
+          .then(response => {
+            this.setState({ categoryRecipes: response.data.meals });
+          })
+          .then(() => {
+            this.randomRecepies();
+            this.state.similarIdRecipe.map(async simId => {
+              const response = await axios.get(
+                `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${simId}`
+              );
               this.setState({
                 similarRecipe: this.state.similarRecipe.concat(
                   response.data.meals
                 )
               });
             });
-        });
+          })
+          .catch(error => {
+            this.setState({ error: true });
+            console.log(error);
+          });
       })
       .catch(error => {
         this.setState({ error: true });
@@ -59,21 +70,20 @@ class SingleMeal extends Component {
   };
 
   randomRecepies = () => {
-    const arrayOfSimularRecipes = this.props.location.state.recipes;
+    const arrayOfSimularRecipes = this.state.categoryRecipes;
     const threeRandom = arrayOfSimularRecipes.sort(() => 0.5 - Math.random());
     let randomSelected = threeRandom.slice(0, 3);
 
-    const randomSelRec = randomSelected.map(simular => {
+    const randomSelelectedRecipe = randomSelected.map(simular => {
       return simular.idMeal;
     });
-    return this.setState({ similarIdRecipe: randomSelRec });
+    return this.setState({ similarIdRecipe: randomSelelectedRecipe });
   };
 
   render() {
     const recipe = this.state.activeRecipe;
     const listOfIngediants = Object.values(this.state.ingrediants);
     const listOfMesure = Object.values(this.state.mesure);
-
     const ingrediants = listOfIngediants.map((ingrediant, i) => {
       if (ingrediant !== "" && ingrediant !== " " && ingrediant !== null) {
         return (

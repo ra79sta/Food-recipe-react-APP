@@ -6,16 +6,19 @@ import "./Category.css";
 
 class Category extends Component {
   state = {
-    categoryRecipes: []
+    categoryRecipes: [],
+    category: ""
   };
 
   componentDidMount = () => {
     const category = this.props.location.state.categoryName;
-    console.log(category);
     axios
       .get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
       .then(response => {
-        this.setState({ categoryRecipes: response.data.meals });
+        this.setState({
+          categoryRecipes: response.data.meals,
+          category: category
+        });
       })
       .catch(error => {
         this.setState({ error: true });
@@ -24,10 +27,11 @@ class Category extends Component {
   };
 
   render() {
+    const categoryRecipes = this.state.categoryRecipes;
     return (
       <div className="container">
         <div className="row">
-          {this.state.categoryRecipes.map(recipes => {
+          {categoryRecipes.map(recipes => {
             return (
               <div key={recipes.idMeal} className="col-md-4 recepieItem">
                 <Link
@@ -35,7 +39,7 @@ class Category extends Component {
                     pathname: `/singlemeal`,
                     state: {
                       mealId: recipes.idMeal,
-                      recipes: this.state.categoryRecipes
+                      category: this.state.category
                     }
                   }}
                 >

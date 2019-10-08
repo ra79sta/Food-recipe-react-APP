@@ -8,10 +8,10 @@ import Auxilery from "../../hoc/Auxilery/Auxilery";
 import Header from "../../components/Header/Header";
 
 class Layout extends Component {
-
   getRecipe = e => {
     let searchValue = e.target.elements.searchValue.value;
     e.preventDefault();
+    e.target.reset();
     axios
       .get(
         `https://www.themealdb.com/api/json/v1/1/search.php?f=${searchValue}`
@@ -23,7 +23,6 @@ class Layout extends Component {
         })
       )
       .catch(error => {
-        this.setState({ error: true });
         console.log(error);
       });
   };

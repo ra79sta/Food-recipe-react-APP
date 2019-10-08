@@ -21,7 +21,7 @@ class Contact extends Component {
       lname: "",
       email: "",
       message: "",
-      mailSent: true
+      mailSent: false
     });
   };
   valueOnchange = e => {

@@ -5,7 +5,7 @@ import "./SearchBar.css";
 import Button from "../Button/Button";
 
 const searchBar = props => (
-  <form onSubmit={props.getRecipe}>
+  <form onSubmit={props.submitHandler}>
     <div className="input-group">
       <input
         className="form-control"
