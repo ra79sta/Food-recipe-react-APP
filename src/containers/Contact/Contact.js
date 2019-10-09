@@ -15,13 +15,18 @@ class Contact extends Component {
 
   handleFormSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
+    const {fname, lname, email, message } = this.state;
+    localStorage.setItem(fname, "fname");
+    localStorage.setItem(lname, "lname");
+    localStorage.setItem(email, "email");
+    localStorage.setItem(message, "message");
+    this.setState({mailSent: true})
     this.setState({
       fname: "",
       lname: "",
       email: "",
       message: "",
-      mailSent: false
     });
   };
   valueOnchange = e => {

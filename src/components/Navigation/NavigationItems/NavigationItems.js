@@ -1,16 +1,30 @@
-import React from 'react';
+import React, { Component } from "react";
 
+import "./NavigationItems.css";
+import NavigationItem from "../NavigationItem/NavigationItem";
+import Tooltip from "../../Tooltip/Tooltip";
 
-import './NavigationItems.css'
-import NavigationItem from '../NavigationItem/NavigationItem';
+class NavigationItems extends Component {
+  render() {
+    const currentPath = window.location.pathname;
+    const switchComponents =
+      currentPath === "/" ? (
+        <Tooltip />
+      ) : (
+        <NavigationItem link="/" active>
+          Home
+        </NavigationItem>
+      );
 
-
-const navigationItems = () => (
-    <ul className='navigationItems'>
-        <NavigationItem link="/" active>Home</NavigationItem>
+    return (
+      <ul className="navigationItems">
+        {switchComponents}
+        <NavigationItem link="/mymeal">My Meal</NavigationItem>
         <NavigationItem link="/about">About Us</NavigationItem>
         <NavigationItem link="/contact">Contact</NavigationItem>
-    </ul>
-);
+      </ul>
+    );
+  }
+}
 
-export default navigationItems;
+export default NavigationItems;

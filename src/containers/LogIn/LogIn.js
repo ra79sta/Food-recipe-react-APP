@@ -5,46 +5,72 @@ import Button from "../../components/Button/Button";
 class LogIn extends Component {
   state = {
     eMail: "",
-    password: ""
+    password: "",
+    isLogedIn: false
   };
-  handleFormSubmit = e => {
+  handleForm = e => {
     e.preventDefault();
-    console.log(this.state);
+    const { eMail, password } = this.state;
+    localStorage.setItem("eMail", eMail);
+    localStorage.setItem("password", password);
     this.setState({
-        eMail: "",
-        password: ""
-    })
+      eMail: "",
+      password: "",
+      isLogedIn: true
+    });
+  };
+
+  logOut = e => {
+    e.preventDefault();
+    localStorage.clear();
+    this.setState({ isLogedIn: false });
   };
 
   valueOnchange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
 
+  componentDidMount = () => {
+    const eMail = localStorage.getItem("eMail");
+    const password = localStorage.getItem("password");
+    eMail !== null && password !== null
+      ? this.setState({ isLogedIn: true })
+      : this.setState({ isLogedIn: false });
+  };
+
   render() {
+    console.log(this.state);
     return (
-    <div className="contact">
-      <form action="#">
-        <input
+      <div className="contact">
+        <form action="#">
+          <input
             type="email"
             id="eMail"
             name="email"
             placeholder="Your email"
-            value={this.state.eMail}
+            value={this.state.eMail || ""}
             onChange={this.valueOnchange}
+            required
           />
-        <input
-          type="password"
-          id="password"
-          placeholder="Your Password"
-          name="password"
-          value={this.state.password}
-          onChange={this.valueOnchange}
-          required
-        />
-        <div className="subButton">
-        <Button handleClick={this.handleFormSubmit}>Login</Button>
-        </div>
-      </form>
+          <input
+            type="password"
+            id="password"
+            placeholder="Your Password"
+            name="password"
+            value={this.state.password || ""}
+            onChange={this.valueOnchange}
+            required
+          />
+          <div className="subButton">
+            <Button
+              handleClick={
+                !this.state.isLogedIn ? this.handleForm : this.logOut
+              }
+            >
+              {this.state.isLogedIn ? "Logout" : "Login"}
+            </Button>
+          </div>
+        </form>
       </div>
     );
   }

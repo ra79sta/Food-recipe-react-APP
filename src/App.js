@@ -9,6 +9,7 @@ import Contact from "./containers/Contact/Contact";
 import Category from "./pages/Category/Category";
 import SingleMeal from "./pages/SingleMeal/SingleMeal";
 import Search from "./pages/Search/Search";
+import MyMeal from "./pages/MyMeal/MyMeal";
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
             <Route path="/category" component={Category} />
             <Route path="/singlemeal" component={SingleMeal} />
             <Route path="/search" component={Search} />
+            <Route path="/mymeal" component={MyMeal} />
           </Switch>
         </Layout>
       </div>
