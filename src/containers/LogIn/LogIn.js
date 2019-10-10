@@ -13,17 +13,21 @@ class LogIn extends Component {
     const { eMail, password } = this.state;
     localStorage.setItem("eMail", eMail);
     localStorage.setItem("password", password);
+    localStorage.setItem("isLogedIn", true);
     this.setState({
       eMail: "",
       password: "",
       isLogedIn: true
     });
+    this.props.getStateLog(true)
   };
 
   logOut = e => {
     e.preventDefault();
     localStorage.clear();
     this.setState({ isLogedIn: false });
+    localStorage.setItem("isLogedIn", false);
+    this.props.getStateLog(false)
   };
 
   valueOnchange = e => {
