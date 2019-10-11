@@ -6,6 +6,7 @@ import "./Layout.css";
 
 import Auxilery from "../../hoc/Auxilery/Auxilery";
 import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
 class Layout extends Component {
   getRecipe = e => {
@@ -32,6 +33,7 @@ class Layout extends Component {
       <Auxilery>
         <Header getRecipe={this.getRecipe} />
         <main className="layout">{this.props.children}</main>
+        <Footer />
       </Auxilery>
     );
   }

@@ -1,9 +1,15 @@
-.recepieItem {
+.recepieItem, .recomended {
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
     margin-top: 15px;
 }
-.recepieItem img {
+.recepieItem img, .recomended img {
     width: 100%;
     height: auto;
+}
+.recomended {
+    margin-bottom: 50px;
+}
+.container {
+    margin-bottom: 60px;
 }

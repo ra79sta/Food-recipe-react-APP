@@ -43,7 +43,6 @@ class LogIn extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div className="contact">
         <form action="#">

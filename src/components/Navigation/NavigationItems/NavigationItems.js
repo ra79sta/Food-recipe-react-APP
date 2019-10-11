@@ -17,7 +17,6 @@ componentDidMount = () => {
     this.setState({ isLogedIn: value });
   };
   render() {
-    console.log(this.state.isLogedIn);
     const currentPath = window.location.pathname;
     const switchComponents =
       currentPath === "/" ? (

@@ -7,6 +7,7 @@ import "./Category.css";
 class Category extends Component {
   state = {
     categoryRecipes: [],
+    recomended: [],
     category: ""
   };
 
@@ -20,6 +21,15 @@ class Category extends Component {
           category: category
         });
       })
+      .then(() =>
+        this.setState({
+          recomended: this.state.recomended.concat(
+            this.state.categoryRecipes[
+              Math.floor(Math.random() * this.state.categoryRecipes.length)
+            ]
+          )
+        })
+      )
       .catch(error => {
         this.setState({ error: true });
         console.log(error);
@@ -28,30 +38,55 @@ class Category extends Component {
 
   render() {
     const categoryRecipes = this.state.categoryRecipes;
-    return (
-      <div className="container">
+    const recomended = this.state.recomended;
+    
+    const recomendedRecipe = recomended.map(rec => {
+      return (
         <div className="row">
-          {categoryRecipes.map(recipes => {
-            return (
-              <div key={recipes.idMeal} className="col-md-4 recepieItem">
-                <Link
-                  to={{
-                    pathname: `/singlemeal`,
-                    state: {
-                      mealId: recipes.idMeal,
-                      category: this.state.category
-                    }
-                  }}
-                >
-                  <img src={recipes.strMealThumb} alt={recipes.strMeal}></img>
-                </Link>
-
-                <h3>{recipes.strMeal}</h3>
-              </div>
-            );
-          })}
+        <div key={rec.idMeal} className="col-md-5 recomended">
+          <Link
+            to={{
+              pathname: `/singlemeal`,
+              state: {
+                mealId: rec.idMeal,
+                category: this.state.category
+              }
+            }}
+          >
+            <img src={rec.strMealThumb} alt={rec.strMeal}></img>
+          </Link>
+          <h3>{rec.strMeal}</h3>
         </div>
-      </div>
+        </div>
+      );
+    });
+
+    return (
+        <div className="container">
+        <h2>Our recomendation</h2>
+          {recomendedRecipe}
+          <div className="row">
+            {categoryRecipes.map(recipes => {
+              return (
+                <div key={recipes.idMeal} className="col-md-4 recepieItem">
+                  <Link
+                    to={{
+                      pathname: `/singlemeal`,
+                      state: {
+                        mealId: recipes.idMeal,
+                        category: this.state.category
+                      }
+                    }}
+                  >
+                    <img src={recipes.strMealThumb} alt={recipes.strMeal}></img>
+                  </Link>
+
+                  <h3>{recipes.strMeal}</h3>
+                </div>
+              );
+            })}
+          </div>
+        </div>
     );
   }
 }
