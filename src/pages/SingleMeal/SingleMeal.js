@@ -14,7 +14,6 @@ class SingleMeal extends Component {
   componentDidMount = () => {
     const mealId = this.props.location.state.mealId;
     const category = this.props.location.state.category;
-    // console.log(category);
     axios
       .get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
       .then(response => {
@@ -73,7 +72,7 @@ class SingleMeal extends Component {
     const arrayOfSimularRecipes = this.state.categoryRecipes;
     const threeRandom = arrayOfSimularRecipes.sort(() => 0.5 - Math.random());
     let randomSelected = threeRandom.slice(0, 3);
-
+    
     const randomSelelectedRecipe = randomSelected.map(simular => {
       return simular.idMeal;
     });

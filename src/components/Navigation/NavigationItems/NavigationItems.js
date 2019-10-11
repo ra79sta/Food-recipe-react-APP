@@ -9,14 +9,15 @@ class NavigationItems extends Component {
     isLogedIn: false
   };
 componentDidMount = () => {
-  const isLogedIn = localStorage.getItem("isLogedIn");
+  const json = localStorage.getItem("isLogedIn");
+  const isLogedIn = JSON.parse(json)
   this.setState({isLogedIn})
 }
   getStateLog = value => {
     this.setState({ isLogedIn: value });
   };
   render() {
-    console.log(this.state);
+    console.log(this.state.isLogedIn);
     const currentPath = window.location.pathname;
     const switchComponents =
       currentPath === "/" ? (
