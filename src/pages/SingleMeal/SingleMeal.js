@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import "./SingleMeal.css";
+
 class SingleMeal extends Component {
   state = {
     activeRecipe: [],
@@ -105,7 +107,7 @@ class SingleMeal extends Component {
 
     const randomRecipes = this.state.similarRecipe.map(similar => {
       return (
-        <div key={similar.idMeal}>
+        <div key={similar.idMeal} className="col-md-4 randomRecipes">
           <img src={similar.strMealThumb} alt={similar.strMeal}></img>
           <h3>{similar.strMeal}</h3>
           <div>Category: {similar.strCategory}</div>
@@ -114,7 +116,7 @@ class SingleMeal extends Component {
       );
     });
     return (
-      <div className="conatainer">
+      <div className="container">
         <h1>{recipe.strMeal}</h1>
         <div>#{recipe.strTags}</div>
         <div>Country: {recipe.strArea}</div>
@@ -137,9 +139,9 @@ class SingleMeal extends Component {
             {mesurments}
           </div>
         </div>
-        <hr />
         <h3>Similar Meals</h3>
-        <div>{randomRecipes}</div>
+        <hr width="100%" size="8" align="center" color="black"></hr>
+        <div className="row">{randomRecipes}</div>
       </div>
     );
   }

@@ -1,13 +1,16 @@
 .myMeal {
-    margin: 25px 25px 120px 25px
+  margin: 25px 25px 120px 25px;
 }
 
 .myMealItem {
-    text-align: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    margin-top: 25px;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin-top: 25px;
+  height: auto;
+  width: 200px;
+  overflow: hidden;
 }
 .myMealItem img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 import "./MyMeal.css";
 class MyMeal extends Component {
@@ -24,7 +25,17 @@ class MyMeal extends Component {
     const myMeals = this.state.myMeals.map(mymeal => {
       return (
         <div key={mymeal.idMeal} className="col-md-4 myMealItem">
+          <Link
+              to={{
+                pathname: `/singlemeal`,
+                state: {
+                  mealId: mymeal.idMeal,
+                  category: mymeal.strCategory
+                }
+              }}
+            >
           <img src={mymeal.strMealThumb} alt={mymeal.strMeal}></img>
+          </Link>
           <h3>{mymeal.strMeal}</h3>
           <div>Category: {mymeal.strCategory}</div>
           <div>Country: {mymeal.strArea}</div>
@@ -33,8 +44,11 @@ class MyMeal extends Component {
     });
     return (
       <div className="myMeal">
+        <div className="container">
         <h1>My Meals</h1>
+        <hr width="100%" size="8" align="center" color="black"></hr>
         <div className="row">{myMeals}</div>
+      </div>
       </div>
     );
   }

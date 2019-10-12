@@ -1,15 +1,32 @@
-.recepieItem, .recomended {
-    text-align: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    margin-top: 15px;
+.recepieItem,
+.recomended {
+  text-align: center;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin-top: 15px;
 }
-.recepieItem img, .recomended img {
-    width: 100%;
-    height: auto;
+.recepieItem img,
+.recomended img {
+  width: 100%;
+  height: auto;
 }
 .recomended {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
+  flex: 0 0 40%;
+  width: 50%;
 }
 .container {
-    margin-bottom: 60px;
+  margin-bottom: 70px;
+}
+.searchBox {
+    float: right;
+}
+.searchBox input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
 }

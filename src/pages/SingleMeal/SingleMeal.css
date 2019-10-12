@@ -1,0 +1,12 @@
+.randomRecipes {
+  text-align: center;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin-top: 25px;
+  height: auto;
+  width: 200px;
+  overflow: hidden;
+}
+.randomRecipes img {
+    height: auto;
+    width: 100%;
+}

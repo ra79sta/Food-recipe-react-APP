@@ -1,0 +1,15 @@
+.listOfRecipes {
+  height: auto;
+  width: 400px;
+  overflow: hidden;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin-top: 15px;
+}
+.listOfRecipes img {
+  height: auto;
+  width: 100%;
+}
+.container {
+    margin-bottom: 90px;
+}

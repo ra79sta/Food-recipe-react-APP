@@ -8,7 +8,8 @@ class Category extends Component {
   state = {
     categoryRecipes: [],
     recomended: [],
-    category: ""
+    category: "",
+    search: ""
   };
 
   componentDidMount = () => {
@@ -36,57 +37,76 @@ class Category extends Component {
       });
   };
 
+  updateSearch = event => this.setState({ search: event.target.value });
+
   render() {
-    const categoryRecipes = this.state.categoryRecipes;
+    const categoryRecipes = this.state.categoryRecipes.filter(recipe => {
+      return (
+        recipe.strMeal
+          .toLowerCase()
+          .indexOf(this.state.search.toLowerCase()) !== -1
+      );
+    });
     const recomended = this.state.recomended;
-    
+
     const recomendedRecipe = recomended.map(rec => {
       return (
-        <div className="row">
-        <div key={rec.idMeal} className="col-md-5 recomended">
-          <Link
-            to={{
-              pathname: `/singlemeal`,
-              state: {
-                mealId: rec.idMeal,
-                category: this.state.category
-              }
-            }}
-          >
-            <img src={rec.strMealThumb} alt={rec.strMeal}></img>
-          </Link>
-          <h3>{rec.strMeal}</h3>
-        </div>
-        </div>
+        // <div  className="row">
+          <div key={rec.idMeal} className="recomended">
+            <Link
+              to={{
+                pathname: `/singlemeal`,
+                state: {
+                  mealId: rec.idMeal,
+                  category: this.state.category
+                }
+              }}
+            >
+              <img src={rec.strMealThumb} alt={rec.strMeal}></img>
+            </Link>
+            <h3>{rec.strMeal}</h3>
+          </div>
+        // </div>
       );
     });
 
     return (
-        <div className="container">
+      <div className="container">
+        <h1>{this.state.category}</h1>
         <h2>Our recomendation</h2>
-          {recomendedRecipe}
-          <div className="row">
-            {categoryRecipes.map(recipes => {
-              return (
-                <div key={recipes.idMeal} className="col-md-4 recepieItem">
-                  <Link
-                    to={{
-                      pathname: `/singlemeal`,
-                      state: {
-                        mealId: recipes.idMeal,
-                        category: this.state.category
-                      }
-                    }}
-                  >
-                    <img src={recipes.strMealThumb} alt={recipes.strMeal}></img>
-                  </Link>
-
-                  <h3>{recipes.strMeal}</h3>
-                </div>
-              );
-            })}
-          </div>
+        <div className="searchBox">
+          <h3>Filter Recipe by Name</h3>
+          <input
+            type="text"
+            placeholder="Filter Recipe by Name"
+            value={this.state.search}
+            onChange={this.updateSearch}
+          />
         </div>
+        {recomendedRecipe}
+        <hr width="100%" size="8" align="center" color="black"></hr>
+        <div className="row">
+          {categoryRecipes.map(recipes => {
+            return (
+              <div key={recipes.idMeal} className="col-md-4 recepieItem">
+                <Link
+                  to={{
+                    pathname: `/singlemeal`,
+                    state: {
+                      mealId: recipes.idMeal,
+                      category: this.state.category
+                    }
+                  }}
+                >
+                  <img src={recipes.strMealThumb} alt={recipes.strMeal}></img>
+                </Link>
+
+                <h3>{recipes.strMeal}</h3>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     );
   }
 }
