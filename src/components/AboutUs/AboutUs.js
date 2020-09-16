@@ -26,7 +26,6 @@ const aboutUs = () => (
           ut faucibus pulvinar elementum. Suspendisse interdum consectetur
           libero id faucibus nisl tincidunt eget. Pellentesque adipiscino
           commodo elit at imperdiet.
-          <div>test</div>
       </div>
       <div className="image">
         <img src={aboutImage} alt="AboutUsImage" />
