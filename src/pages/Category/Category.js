@@ -51,7 +51,6 @@ class Category extends Component {
 
     const recomendedRecipe = recomended.map(rec => {
       return (
-        // <div  className="row">
           <div key={rec.idMeal} className="recomended">
             <Link
               to={{
@@ -66,7 +65,6 @@ class Category extends Component {
             </Link>
             <h3>{rec.strMeal}</h3>
           </div>
-        // </div>
       );
     });
 
